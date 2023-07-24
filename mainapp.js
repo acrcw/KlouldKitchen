@@ -9,7 +9,7 @@ app.use(express.json()); // middleware fnc used in post // to convert data into 
 app.use(cookieParser()) // to use as middleware  to acess cokkies in request and response object
 app.use(cors({
     credentials: true,
-    origin:['http://localhost:3000']
+    origin:['https://localhost:3000']
     
 }))
 const port=process.env.PORT || 3000;
