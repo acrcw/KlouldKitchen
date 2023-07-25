@@ -183,6 +183,7 @@ module.exports.checkLogin = function protectroute(req, res, next) {
   }
 };
 module.exports.Logout = async function Logout(req, res) {
+
   res.cookie("Loggedin", "", { httpOnly: true, maxAge: 1, secure: true });
   res.json({message:"Loggedout"})
 };
