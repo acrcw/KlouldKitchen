@@ -82,7 +82,7 @@ module.exports.postSignup = async function postSignup(req, res) {
   console.log(image)
   console.log(req.body.profileimg)
   const tempFilePath = `${imgfolder}/${Date.now()}.jpeg`;
-  fs.writeFileSync(tempFilePath, image.data);
+  fs.writeFileSync(tempFilePath, image.buffer);
 
   try {
 
@@ -91,7 +91,7 @@ module.exports.postSignup = async function postSignup(req, res) {
       email: req.body.email,
       password: req.body.password,
       confirmpassword: req.body.confirmpwd,
-      profileimg: image.data
+      profileimg: image.buffer
     });
     // fs.unlink(req.file.path)
     if (user) {
