@@ -1,5 +1,6 @@
 //post request send data from frontend to backend
 const express = require("express")
+const fileUpload = require('express-fileupload');
 const app = express();
 const cookieParser = require("cookie-parser")
 const stripe = require('stripe')('sk_test_51NVoSgSFnLmMeVsDYJcCwzpQmv0MX8VgN791e2ypGGyy9BHzGkoEz5VrjKjfP22SWTMSYKxFbLzdu4XsyDx6vIgS00WL8heiGv');
@@ -11,6 +12,7 @@ app.use(cors({
     credentials: true,
     origin: "*"
 }))
+app.use(fileUpload());
 // app.use(checkFrontendRequest);
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

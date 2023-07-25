@@ -2,7 +2,7 @@ const express = require("express")
 
 const userRouter = express.Router();
 const multer=require("multer");
-const fileUpload = require('express-fileupload');
+
 const {getAllusers, getusers, getcookies, postuser, setcookies, deleteuser, updateuser ,getuserProfile, updateProfileImage} = require("../controller/userController");
 const {Logout,sendupdatepage,checkLogin,isAuthorized, getforgetpwd, resetpwd,forgetpassword, getSignup, postSignup, postLogin, getLogin, getresetpage } = require("../controller/authController")
 const protectroute = require('./authhelper')
@@ -18,7 +18,7 @@ const protectroute = require('./authhelper')
 //     {
 //         cb(null,`user-${Date.now()}.jpeg`)
 //     }
-app.use(fileUpload());
+
 // })
 // const storage=multer.memoryStorage();
 const filter=function (req,file,cb)
