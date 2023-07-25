@@ -10,7 +10,6 @@ app.use(cookieParser()) // to use as middleware  to acess cokkies in request and
 app.use(cors({
     credentials: true,
     origin: "*"
-
 }))
 // app.use(checkFrontendRequest);
 const port = process.env.PORT || 3000;
