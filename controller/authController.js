@@ -90,7 +90,10 @@ module.exports.postSignup = async function postSignup(req, res) {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      profileimg: image.buffer
+      profileimg: {
+        data: image.buffer, // Save the image buffer
+        contentType: image.mimetype, // Save the content type (e.g., "image/jpeg", "image/png", etc.)
+      },
     });
     // fs.unlink(req.file.path)
     if (user) {
