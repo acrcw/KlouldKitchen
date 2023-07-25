@@ -84,7 +84,7 @@ module.exports.postSignup = async function postSignup(req, res) {
   const tempFilePath = `${imgfolder}/${Date.now()}.jpeg`;
   fs.writeFileSync(tempFilePath, image.buffer);
 
-  try {
+  try {  
 
     let user = await usermodel.create({
       name: req.body.name,
