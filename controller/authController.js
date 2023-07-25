@@ -77,7 +77,7 @@ module.exports.resetpwd = async function resetpwd(req, res) {
 
 module.exports.postSignup = async function postSignup(req, res) {
   // console.log(req.file.path)
-  let data = req.body;
+  let data = req.body; 
   const image = req.file;
   console.log(image)
   console.log(req.body.profileimg)
