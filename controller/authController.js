@@ -15,7 +15,7 @@ module.exports.forgetpassword = async function forgetpassword(req, res) {
 
     if (user === null) {
       return res.status(404).json({
-       user
+        user
       });
     } else {
       const resetToken = user.createResetToken();
@@ -28,7 +28,7 @@ module.exports.forgetpassword = async function forgetpassword(req, res) {
       // console.log(obj);
       sendMail("resetpassword", obj);
       return res.json({
-        resetPasswordLink:`/user/resetpassword/${resetToken}`
+        resetPasswordLink: `/user/resetpassword/${resetToken}`
       });
     }
   } catch (err) {
@@ -46,13 +46,13 @@ module.exports.resetpwd = async function resetpwd(req, res) {
 
     jwt.verify(token, JWT_KEY, async function (err, decoded) {
       if (err) {
-        return res.status(200).json({ message: "Token expired"});
+        return res.status(200).json({ message: "Token expired" });
       } else {
         // console.log(decoded)
         const user = await usermodel.findOne({ resetToken: token });
         if (user == null) {
           return res.status(400).json({
-            
+
           });
         }
         // console.log(user);
@@ -61,7 +61,7 @@ module.exports.resetpwd = async function resetpwd(req, res) {
         const updatedpassworddoc = await user.save();
         // console.log(updatedpassworddoc)
         return res.status(202).json({
-          user:updatedpassworddoc
+          user: updatedpassworddoc
         });
       }
     });
@@ -86,10 +86,10 @@ module.exports.postSignup = async function postSignup(req, res) {
     // fs.unlink(req.file.path)
     if (user) {
       sendMail("signup", user);
-      res.status(200).json({ user:user });
+      res.status(200).json({ user: user });
     }
   } catch (err) {
-    res.status(200).json({message:"Signup Failed"});
+    res.status(200).json({ message: "Signup Failed" });
   }
 };
 module.exports.postLogin = async function postLogin(req, res) {
@@ -111,17 +111,17 @@ module.exports.postLogin = async function postLogin(req, res) {
             secure: true,
           });
           res.status(200).json({
-            message:"Success",
-            user:user
+            message: "Success",
+            user: user
           });
         } else {
           // console.log("error in password");
-          res.status(200).json({message:"Invalid Login/Password"});
+          res.status(200).json({ message: "Invalid Login/Password" });
         }
       });
     } else {
       // console.log("hello")
-      res.status(200).json({message:"Invalid Login/Password"});
+      res.status(200).json({ message: "Invalid Login/Password" });
     }
   } catch (err) {
     res.status(200).json({});
@@ -157,11 +157,11 @@ module.exports.checkLogin = function protectroute(req, res, next) {
       }
     });
   } else {
-    return res.status(200).json({message:"login"});
+    return res.status(200).json({ message: "login" });
   }
 };
 module.exports.Logout = async function Logout(req, res) {
 
   res.cookie("Loggedin", "", { httpOnly: true, maxAge: 1, secure: true });
-  res.json({message:"Loggedout"})
+  res.json({ message: "Loggedout" })
 };
