@@ -59,7 +59,7 @@ module.exports.updateuser = async function updateuser(req, res) {
     //update data in users object
     try {
         let uid = req.params.id;
-        console.log(uid);
+        // console.log(uid);
         let user = await usermodel.findById(uid);
         let datatobeupdated = req.body;
         if (user) {
