@@ -59,6 +59,7 @@ module.exports.updateuser = async function updateuser(req, res) {
     //update data in users object
     try {
         let uid = req.params.id;
+        console.log(uid);
         let user = await usermodel.findById(uid);
         let datatobeupdated = req.body;
         if (user) {
@@ -120,7 +121,7 @@ module.exports.deleteuser = async function deleteuser(req, res) {
     }
 };
 //done
-module.exports.updateProfileImage = async function updateProfileImage(req, res,next) {
+module.exports.updateProfileImage = async function updateProfileImage(req, res, next) {
     if (!req.file) {
         return res.status(500).send('No image file provided.');
     }
