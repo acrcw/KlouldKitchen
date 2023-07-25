@@ -1,23 +1,11 @@
-const path = require("path");
+
 const bcrypt = require("bcrypt");
-const fs = require("fs");
+
 const jwt = require("jsonwebtoken");
 const { JWT_KEY } = require("../secrets.js");
 const usermodel = require("../modals/usermodal.js");
 const { sendMail } = require("../utitility/nodeMailer.js");
-const signupFilePath = path.join(__dirname, "../view/signup.html");
-const loginFilePath = path.join(__dirname, "../view/login.html");
-const resetpwdFilePath = path.join(__dirname, "../view/forgotpassword.html");
-const updateprofilepath = path.join(__dirname, "../view/updateprofile.html");
-const getresetpath = path.join(__dirname, "../view/resetpage.html");
-//done
-module.exports.getforgetpwd = function getforgetpwd(req, res) {
-  res.sendFile(resetpwdFilePath);
-};
-//done
-module.exports.getresetpage = function getresetpage(req, res) {
-  res.sendFile(getresetpath);
-};
+
 
 module.exports.forgetpassword = async function forgetpassword(req, res) {
   let { email } = req.body;
@@ -83,11 +71,7 @@ module.exports.resetpwd = async function resetpwd(req, res) {
     });
   }
 };
-//done
-module.exports.getSignup = function getSignup(req, res) {
-  // console.log(__dirname)
-  res.sendFile(signupFilePath);
-};
+
 
 module.exports.postSignup = async function postSignup(req, res) {
   // console.log(req.file.path)
@@ -144,14 +128,8 @@ module.exports.postLogin = async function postLogin(req, res) {
   }
   // console.log(user)
 };
-//done
-module.exports.getLogin = function getLogin(req, res) {
-  res.sendFile(loginFilePath);
-};
-//done
-module.exports.sendupdatepage = function updateprofile(req, res) {
-  res.sendFile(updateprofilepath);
-};
+
+
 module.exports.isAuthorized = function isAuthorized(roles) {
   return function (req, res, next) {
     if (roles.includes(req.role)) {
