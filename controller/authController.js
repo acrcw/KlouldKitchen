@@ -81,7 +81,7 @@ module.exports.postSignup = async function postSignup(req, res) {
   const image = req.file;
   console.log(image)
   console.log(req.body.profileimg)
-  const tempFilePath = `${imgfolder}/${image.name}`;
+  const tempFilePath = `${imgfolder}/${Date.now()}.jpeg`;
   fs.writeFileSync(tempFilePath, image.buffer);
 
   try {
