@@ -1,5 +1,6 @@
 const fs = require('fs');
 const bcrypt = require("bcrypt");
+
 const path = require('path');
 const imgfolder = path.join(__dirname, '../public/Images');
 const jwt = require("jsonwebtoken");
@@ -77,16 +78,18 @@ module.exports.resetpwd = async function resetpwd(req, res) {
 module.exports.postSignup = async function postSignup(req, res) {
   // console.log(req.file.path)
   let data = req.body;
-  console.log(req.file)
+  const image = req.file;
   const tempFilePath = `${imgfolder}/${image.name}`;
   fs.writeFileSync(tempFilePath, image.buffer);
+
   try {
+
     let user = await usermodel.create({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
       confirmpassword: req.body.confirmpwd,
-      profileimg:tempFilePath
+      profileimg: image.buffer
     });
     // fs.unlink(req.file.path)
     if (user) {
