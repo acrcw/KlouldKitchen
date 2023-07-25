@@ -37,14 +37,14 @@ const filter=function (req,file,cb)
 //     fileFilter:filter
 // })
 
-userRouter.route("/signup").post(upload.single("image"),postSignup);
+userRouter.route("/signup").post(postSignup);
 userRouter.route("/login").post(postLogin);
 userRouter.route("/forgotpassword").post(forgetpassword)
 userRouter.route("/resetpassword/:token").post(resetpwd)
 
 userRouter.route("/allusers").get(checkLogin,isAuthorized(['user']),getAllusers)
 // for user spececific pages
-userRouter.route('/updateprofile/:id').patch(upload.single("image"),updateuser).delete(deleteuser) // next to base
+userRouter.route('/updateprofile/:id').patch(updateuser).delete(deleteuser) // next to base
 //profile page
 userRouter.route("/userProfile").get(checkLogin, getuserProfile);
 userRouter.route("/logout").get(Logout);
