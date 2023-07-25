@@ -43,7 +43,7 @@ userRouter.route("/resetpassword/:token").post(resetpwd)
 
 userRouter.route("/allusers").get(checkLogin,isAuthorized(['user']),getAllusers)
 // for user spececific pages
-userRouter.route('/:id').patch(updateuser).delete(deleteuser) // next to base
+userRouter.route('/updateprofile/:id').patch(updateuser).delete(deleteuser) // next to base
 //profile page
 userRouter.route("/userProfile").get(checkLogin, getuserProfile);
 userRouter.route("/logout").get(Logout);

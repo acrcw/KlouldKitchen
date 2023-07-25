@@ -74,7 +74,7 @@ module.exports.updateuser = async function updateuser(req, res) {
 
             const updateddoc = await user.save();
             res.json({
-                
+                message: "user updated",
                 user: updateddoc
             })
             // res.redirect("/user/login")
