@@ -27,7 +27,7 @@ const reviewSchema = mongoose.Schema({
     },
     plan: {
         type: mongoose.Schema.ObjectId,
-        ref: "planmodel",
+        ref: "planmodel", 
         required: [true, "need a plan to be reviewed"],
         autopopulate: true
     }
