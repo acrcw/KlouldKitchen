@@ -22,7 +22,7 @@ const userRouter = require("./routers/userRouter")
 const planRouter = require("./routers/planRouter");
 const reviewRouter = require("./routers/reviewRouter");
 const stripeRouter = require("./routers/stripeRouter");
-app.route("/").get(redirecttologin)
+
 function checkFrontendRequest(req, res, next) {
     const appToken = req.headers['x-app-token']; // Replace 'x-app-token' with your custom header name
 
