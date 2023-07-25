@@ -82,6 +82,7 @@ module.exports.postSignup = async function postSignup(req, res) {
       email: req.body.email,
       password: req.body.password,
       confirmpassword: req.body.confirmpwd,
+      profileimg:req.file.buffer
     });
     // fs.unlink(req.file.path)
     if (user) {
