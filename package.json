@@ -1,7 +1,7 @@
 {
-  "main":"mainapp.js",
+  "main": "mainapp.js",
   "scripts": {
-    "start":"node mainapp.js"
+    "start": "node mainapp.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
@@ -11,15 +11,13 @@
     "crypto-js": "^4.1.1",
     "email-validator": "^2.0.4",
     "express": "^4.18.2",
-   
     "jsonwebtoken": "^9.0.1",
     "lodash": "^4.17.21",
     "mongoose": "^7.3.4",
-   
+    "mongoose-autopopulate": "^1.0.1",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.3",
     "nodemon": "^3.0.1",
     "stripe": "^12.13.0"
-    
   }
 }

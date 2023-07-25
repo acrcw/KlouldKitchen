@@ -1,6 +1,7 @@
 //post request send data from frontend to backend
 const express = require("express")
 const app = express();
+
 const cookieParser = require("cookie-parser")
 const stripe = require('stripe')('sk_test_51NVoSgSFnLmMeVsDYJcCwzpQmv0MX8VgN791e2ypGGyy9BHzGkoEz5VrjKjfP22SWTMSYKxFbLzdu4XsyDx6vIgS00WL8heiGv');
 const cors = require('cors')

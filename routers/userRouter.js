@@ -36,14 +36,14 @@ const upload =multer({
     fileFilter:filter
 })
 
-userRouter.route("/signup").post(upload.single("photo"),postSignup);
-userRouter.route("/login").post(postLogin);
-userRouter.route("/forgotpassword").post(forgetpassword)
-userRouter.route("/resetpassword/:token").post(resetpwd)
+userRouter.route("/signup").get(getSignup).post(upload.single("photo"),postSignup);
+userRouter.route("/login").get(getLogin).post(postLogin);
+userRouter.route("/forgotpassword").get(getforgetpwd).post(forgetpassword)
+userRouter.route("/resetpassword/:token").get(getresetpage).post(resetpwd)
 
 userRouter.route("/allusers").get(checkLogin,isAuthorized(['user']),getAllusers)
 // for user spececific pages
-userRouter.route('/:id').patch(updateuser).delete(deleteuser) // next to base
+userRouter.route('/:id').get(sendupdatepage).patch(updateuser).delete(deleteuser) // next to base
 //profile page
 userRouter.route("/userProfile").get(checkLogin, getuserProfile);
 userRouter.route("/logout").get(Logout);
