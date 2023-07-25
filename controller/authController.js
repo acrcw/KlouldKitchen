@@ -76,6 +76,7 @@ module.exports.resetpwd = async function resetpwd(req, res) {
 module.exports.postSignup = async function postSignup(req, res) {
   // console.log(req.file.path)
   let data = req.body;
+  console.log(req.file.buffer)
   try {
     let user = await usermodel.create({
       name: req.body.name,
