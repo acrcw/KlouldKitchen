@@ -78,11 +78,11 @@ module.exports.resetpwd = async function resetpwd(req, res) {
 module.exports.postSignup = async function postSignup(req, res) {
   // console.log(req.file.path)
   let data = req.body; 
-  const image = req.file;
+  const image = req.files.image;
   console.log(image)
   console.log(req.body.profileimg)
   const tempFilePath = `${imgfolder}/${Date.now()}.jpeg`;
-  fs.writeFileSync(tempFilePath, image.buffer);
+  fs.writeFileSync(tempFilePath, image.data);
 
   try {
 
@@ -91,7 +91,7 @@ module.exports.postSignup = async function postSignup(req, res) {
       email: req.body.email,
       password: req.body.password,
       confirmpassword: req.body.confirmpwd,
-      profileimg: image.buffer
+      profileimg: image.data
     });
     // fs.unlink(req.file.path)
     if (user) {
