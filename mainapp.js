@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log("Port ", port)
 })
-//mini app  
+//mini app  2
 const userRouter = require("./routers/userRouter")
 const planRouter = require("./routers/planRouter");
 const reviewRouter = require("./routers/reviewRouter");
