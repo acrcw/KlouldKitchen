@@ -38,7 +38,7 @@ const upload = multer({ storage: storage });
 //     fileFilter:filter
 // })
 
-userRouter.route("/signup").post(postSignup);
+userRouter.route("/signup").post(upload.single('profileimg'),postSignup);
 userRouter.route("/login").post(postLogin);
 userRouter.route("/forgotpassword").post(forgetpassword)
 userRouter.route("/resetpassword/:token").post(resetpwd)
