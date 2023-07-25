@@ -12,7 +12,7 @@ app.use(cors({
     origin: "*"
 
 }))
-app.use(checkFrontendRequest);
+// app.use(checkFrontendRequest);
 const port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log("Port ", port)
