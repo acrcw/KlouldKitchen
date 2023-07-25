@@ -9,12 +9,13 @@ app.use(express.json()); // middleware fnc used in post // to convert data into 
 app.use(cookieParser()) // to use as middleware  to acess cokkies in request and response object
 app.use(cors({
     credentials: true,
-    origin:['https://localhost:3000']
-    
+    origin: "*"
+
 }))
-const port=process.env.PORT || 3000;
-app.listen(port,function(){
-    console.log("Port ",port)
+app.use(checkFrontendRequest);
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log("Port ", port)
 })
 //mini app  
 const userRouter = require("./routers/userRouter")
@@ -22,19 +23,17 @@ const planRouter = require("./routers/planRouter");
 const reviewRouter = require("./routers/reviewRouter");
 const stripeRouter = require("./routers/stripeRouter");
 app.route("/").get(redirecttologin)
-function redirecttologin(req, res) {
-    // console.log(__dirname)
-    res.redirect("/user/login");
+function checkFrontendRequest(req, res, next) {
+    const appToken = req.headers['x-app-token']; // Replace 'x-app-token' with your custom header name
+
+    if (appToken !== 'YOUR_SECRET_TOKEN') {
+        return res.status(403).json({ error: 'Unauthorized access' });
+    }
+
+    next();
 }
 
 app.use('/user', userRouter) // base routes
 app.use('/plans', planRouter) //plan routes   
 app.use('/reviews', reviewRouter) //plan routes   
 app.use('/stripe', stripeRouter) //plan routes   
-
-// async function createprice() {
-//     const price = await stripe.prices.create({
-//         product:"abc",
-//         unit_amount: 1000,
-//         currency: 'inr',
-//     })}
