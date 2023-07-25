@@ -10,18 +10,18 @@ const protectroute = require('./authhelper')
 // userRouter.route('/').get(protectroute,getusers).post(postuser).patch(updateuser).delete(deleteuser)
 //multer for file upload
 
-const multerStorage=multer.diskStorage({
-    destination:function(req,file,cb)
-    {
-        cb(null,imgfolder)
-    },
-    filename:function(req,file,cb)
-    {
-        cb(null,`user-${Date.now()}.jpeg`)
-    }
+// const multerStorage=multer.diskStorage({
+//     destination:function(req,file,cb)
+//     {
+//         cb(null,imgfolder)
+//     },
+//     filename:function(req,file,cb)
+//     {
+//         cb(null,`user-${Date.now()}.jpeg`)
+//     }
 
-})
-// const storage=multer.memoryStorage();
+// })
+const storage=multer.memoryStorage();
 const filter=function (req,file,cb)
 {
     if(file.mimetype.startsWith("image"))
@@ -32,11 +32,11 @@ const filter=function (req,file,cb)
         cb(new Error("Not an Image"),false)
     }
 }
-// const upload = multer({ storage: storage });
-const upload =multer({
-    storage:multerStorage,
-    fileFilter:filter
-})
+const upload = multer({ storage: storage });
+// const upload =multer({
+//     storage:multerStorage,
+//     fileFilter:filter
+// })
 
 userRouter.route("/signup").post(postSignup);
 userRouter.route("/login").post(postLogin);
