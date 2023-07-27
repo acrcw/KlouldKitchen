@@ -37,4 +37,4 @@ function checkFrontendRequest(req, res, next) {
 app.use('/user', userRouter) // base routes
 app.use('/plans', planRouter) //plan routes   
 app.use('/reviews', reviewRouter) //plan routes   
-app.use('/stripe', stripeRouter) //plan routes   
+app.use('/checkout', stripeRouter) //plan routes   

@@ -31,7 +31,25 @@ module.exports.createSession = async function createSession(req, res) {
             err:error.message
         })
     }
+}
+module.exports.getproduct = async function getproduct(req, res) {
+  const productId = req.params.id;
 
-
-
+  try {
+    // Fetch the product from Stripe using the product ID
+    const product = await stripe.products.retrieve(productId);
+    if(product)
+    {
+      return res.json({message:"Found",product:product})
+    }
+    else
+    { 
+      return res.json({message:"Not_Found"})
+    }
+   
+    
+  } catch (error) {
+    console.error('Error fetching product details:', error);
+    res.status(500).json({ error: 'Failed to fetch product details' });
+  }
 }
