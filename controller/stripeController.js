@@ -33,7 +33,7 @@ module.exports.createSession = async function createSession(req, res) {
     }
 }
 module.exports.getproduct = async function getproduct(req, res) {
-  const productId = req.params.id;
+  const Id = req.params.id;
 
   try {
     // Fetch the product from Stripe using the product ID
