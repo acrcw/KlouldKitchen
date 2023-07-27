@@ -58,6 +58,10 @@ module.exports.createPlan = async function createPlan(req, res) {
         currency: "INR",
         unit_amount: planPrice * 100,
       },
+      metadata: {
+        price: planPrice, // Store the price as a string or any other necessary format
+        // ... other metadata key-value pairs if needed
+      },
     });
     // console.log(createdproduct);
     let createdPlan = await planmodel.create({
