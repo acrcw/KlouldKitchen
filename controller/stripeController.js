@@ -32,15 +32,41 @@ module.exports.createSession = async function createSession(req, res) {
         })
     }
 }
-module.exports.getproduct = async function getproduct(req, res) {
+module.exports.getproduct = async function getproduct(req, res,next) {
   const Id = req.params.id;
   console.log(Id);
   try {
     // Fetch the product from Stripe using the product ID
-    const product = await stripe.products.retrieve(productId);
+    const product = await stripe.products.retrieve(Id);
+    console.log(product)
     if(product)
     {
-      return res.json({message:"Found",product:product})
+      req.id=product.default_price;
+      req.name=product.description;
+      // return res.json({message:"Found",product:product})
+      next();
+    }
+    else
+    { 
+      return res.json({message:"Not_Found"})
+    }
+   
+    
+  } catch (error) {
+    console.error('Error fetching product details:', error);
+    res.status(500).json({ error: 'Failed to fetch product details' });
+  }
+}
+module.exports.getprice = async function getprice(req, res) {
+  const Id = req.id;
+  console.log(Id);
+  try {
+    // Fetch the product from Stripe using the product ID
+    const price = await stripe.prices.retrieve(Id);
+    console.log(price)
+    if(price)
+    {
+      return res.json({message:"Found",price:price,name:req.name})
     }
     else
     { 
