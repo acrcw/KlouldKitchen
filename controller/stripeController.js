@@ -9,13 +9,13 @@ module.exports.createSession = async function createSession(req, res) {
         try {
             // Get the payment information from the request body sent by the client
             const { amount, currency, token } = req.body;
-            console.log(token)
+            const serial=JSON.stringify(token)
             // Create a payment intent or charge the user using the Stripe API
             const paymentIntent = await stripe.paymentIntents.create({
               amount,
               currency,
               payment_method_types: ['card'],
-              payment_method: JSON.stringify(token),
+              payment_method:serial ,
             });
         
             // Optionally, you can handle additional logic or actions here based on the payment result
