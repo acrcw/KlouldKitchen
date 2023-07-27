@@ -34,11 +34,11 @@ module.exports.createSession = async function createSession(req, res) {
 }
 module.exports.getproduct = async function getproduct(req, res,next) {
   const Id = req.params.id;
-  console.log(Id);
+  // console.log(Id);
   try {
     // Fetch the product from Stripe using the product ID
     const product = await stripe.products.retrieve(Id);
-    console.log(product)
+    // console.log(product)
     if(product)
     {
       req.id=product.default_price;
@@ -59,11 +59,11 @@ module.exports.getproduct = async function getproduct(req, res,next) {
 }
 module.exports.getprice = async function getprice(req, res) {
   const Id = req.id;
-  console.log(Id);
+  // console.log(Id);
   try {
     // Fetch the product from Stripe using the product ID
     const price = await stripe.prices.retrieve(Id);
-    console.log(price)
+    // console.log(price)
     if(price)
     {
       return res.json({message:"Found",price:price,name:req.name})
