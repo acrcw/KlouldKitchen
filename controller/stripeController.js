@@ -5,10 +5,11 @@ const stripe = require('stripe')('sk_test_51NVoSgSFnLmMeVsDYJcCwzpQmv0MX8VgN791e
 const checkOutPath = path.join(__dirname, '../view/checkout.html');
 module.exports.createSession = async function createSession(req, res) {
     try {
+     
         try {
             // Get the payment information from the request body sent by the client
             const { amount, currency, token } = req.body;
-        
+            console.log(token)
             // Create a payment intent or charge the user using the Stripe API
             const paymentIntent = await stripe.paymentIntents.create({
               amount,
