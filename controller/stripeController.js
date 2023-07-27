@@ -15,7 +15,7 @@ module.exports.createSession = async function createSession(req, res) {
               amount,
               currency,
               payment_method_types: ['card'],
-              payment_method: token,
+              payment_method: JSON.stringify(token),
             });
         
             // Optionally, you can handle additional logic or actions here based on the payment result
